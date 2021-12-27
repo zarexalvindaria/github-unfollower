@@ -1,6 +1,8 @@
 import urllib.request
 import json
 
+base_url = 'https://api.github.com/users/'
+
 
 def get_user_list(url):
     with urllib.request.urlopen(url) as response:
@@ -13,19 +15,19 @@ def get_user_list(url):
 
 # Get list of followers
 def get_followers(userid):
-    return get_user_list('https://api.github.com/users/' + userid + '/followers')
+    return get_user_list(base_url + userid + '/followers')
 
 
 # Get list of following
 def get_following(userid):
-    return get_user_list('https://api.github.com/users/' + userid + '/following')
+    return get_user_list(base_url + userid + '/following')
 
 
 if __name__ == '__main__':
     username = str(input("Enter your GitHub username: "))
     followers = get_followers(username)
     following = get_following(username)
-    not_following_users = list(set(following) - set(followers))
-    print(f'\nHere are the users not following you:')
-    for user_to_unfollow in not_following_users:
-        print(user_to_unfollow)
+    no_follow_back_users = list(set(following) - set(followers))
+    print(f'\nHere are the users not following you back:')
+    for no_follow_back_user in no_follow_back_users:
+        print(no_follow_back_users)
