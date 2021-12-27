@@ -6,5 +6,6 @@ following.
 
 ## Instructions
 1. Fork or clone the repository
-2. Run the program. 
-3. Input your username.
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the program. 
+4. Input your username.
