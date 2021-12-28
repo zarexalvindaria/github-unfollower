@@ -30,4 +30,4 @@ if __name__ == '__main__':
     no_follow_back_users = list(set(following) - set(followers))
     print(f'\nHere are the users not following you back:')
     for no_follow_back_user in no_follow_back_users:
-        print(no_follow_back_users)
+        print(no_follow_back_user)
