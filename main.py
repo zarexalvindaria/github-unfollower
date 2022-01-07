@@ -33,15 +33,11 @@ if __name__ == '__main__':
 
     # Count total followers
     follower_count = 0
-    for follower in followers:
-        follower_count += 1
-    print(f'followers:', follower_count)
+    print(f'followers:', len(followers))
 
     # Count total following
     following_count = 0
-    for follow in following:
-        following_count += 1
-    print(f'following:', following_count)
+    print(f'following:', len(following))
 
     # Print no follow back users
     print(f'\nHere are the users not following you back:')
