@@ -11,7 +11,6 @@ def get_user_list(userid, user_type):
     while True:
         try:
             url = base_url + userid + '/' + user_type + '?per_page=100&page=' + str(i)
-            print(url)
             with urllib.request.urlopen(url) as response:
                 users = json.loads(response.read().decode())
                 if users:
