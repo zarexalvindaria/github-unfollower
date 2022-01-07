@@ -4,43 +4,14 @@ import json
 base_url = 'https://api.github.com/users/'
 
 
-# def get_user_list(*args, url):
-#     with urllib.request.urlopen(url) as response:
-#         users = json.loads(response.read().decode())
-#         for user in users:
-#             user_list += [user['login']]
-#         return user_list
-
-
-# Get list of followers
-def get_followers(userid):
+def get_user_list(userid, user_type):
     i = 1
     user_list = []
 
     while True:
         try:
-            url = base_url + userid + '/followers?per_page=100&page=' + str(i)
-            with urllib.request.urlopen(url) as response:
-                users = json.loads(response.read().decode())
-                if users:
-                    for user in users:
-                        user_list += [user['login']]
-                elif not users:
-                    break
-        except:
-            break
-        i += 1
-    return user_list
-
-
-# Get list of following
-def get_following(userid):
-    i = 1
-    user_list = []
-
-    while True:
-        try:
-            url = base_url + userid + '/following?per_page=100&page=' + str(i)
+            url = base_url + userid + '/' + user_type + '?per_page=100&page=' + str(i)
+            print(url)
             with urllib.request.urlopen(url) as response:
                 users = json.loads(response.read().decode())
                 if users:
@@ -56,9 +27,8 @@ def get_following(userid):
 
 if __name__ == '__main__':
     username = str(input("Enter your GitHub username: "))
-    followers = get_followers(username)
-
-    following = get_following(username)
+    followers = get_user_list(username, 'followers')
+    following = get_user_list(username, 'following')
     no_follow_back_users = list(set(following) - set(followers))
     fans = list(set(followers) - set(following))
 
